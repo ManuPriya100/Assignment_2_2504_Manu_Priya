@@ -38,7 +38,7 @@ class MyFirstPageState extends State<MyFirstPage> {
               //TODO: Replace this Text Widget
               // and build the label and switch here
               // as children of the row.
-           Padding(
+              Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   'Enable Buttons',
@@ -111,9 +111,7 @@ class MyFirstPageState extends State<MyFirstPage> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-
                     shape: RoundedRectangleBorder(
-                      
                       borderRadius: BorderRadius.circular(
                           10.0), // Set rounded corners here
                     ),
@@ -132,28 +130,18 @@ class MyFirstPageState extends State<MyFirstPage> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  //TODO: Build the text form field
-                  // here as the first
-                  // child of the column.
-                  // Include as the second child
-                  // of the column
-                  // a submit button that will show a
-                  // snackbar with the "firstName"
-                  // if validation is satisfied.
-                   TextFormField(
+                  TextFormField(
                     controller: textEditingController,
                     decoration: InputDecoration(
-                       icon: Icon(Icons.hourglass_top),
+                      icon: Icon(Icons.hourglass_top),
                       labelText: 'Enter Name',
-                       helperText: 'min 1, max 10',
+                      helperText: 'min 1, max 10',
                       hintText: 'first name',
-                         suffixIcon: Icon(
-                    Icons.check_circle,
-                  ),
-
-                      border: OutlineInputBorder(), // Border when not focused
-              focusedBorder: OutlineInputBorder( // Border when focused
-              ),
+                      suffixIcon: Icon(
+                        Icons.check_circle,
+                      ),
+                      border: OutlineInputBorder(),
+                      focusedBorder: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -163,40 +151,36 @@ class MyFirstPageState extends State<MyFirstPage> {
                       }
                       return null;
                     },
-
                     onSaved: (value) {
                       firstName = value;
                     },
                   ),
-
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {
-                      if (formKey.currentState?.validate() ?? false) {
-                        // Form is valid, show the Snackbar
-                        formKey.currentState?.save();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Hey $firstName , you rocked assignment-02'),
-                            duration: Duration(seconds: 6),
-                            action: SnackBarAction(
-                              label: 'Click Me',
-                              onPressed: () {
-                                print('Print button in Snackbar clicked');
-                              },
+                      onPressed: () {
+                        if (formKey.currentState?.validate() ?? false) {
+                          formKey.currentState?.save();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content:
+                                  Text('Hey There , Your name is $firstName'),
+                              duration: Duration(seconds: 6),
+                              action: SnackBarAction(
+                                label: 'Click Me',
+                                onPressed: () {
+                                  print('Print button in Snackbar clicked');
+                                },
+                              ),
                             ),
-                          ),
-                        );
-                        textEditingController.clear();
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
+                          );
+                          textEditingController.clear();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                  )
-                    ),
-                    child: Text('Submit')
-                  )
+                      )),
+                      child: Text('Submit'))
                 ],
               ),
             ),
